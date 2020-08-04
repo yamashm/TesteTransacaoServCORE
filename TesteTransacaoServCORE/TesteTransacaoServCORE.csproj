@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B23E0C6D-3485-401E-8E0C-AE0CA54BBF17}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>TesteTransacaoServCORE</RootNamespace>
+    <AssemblyName>TesteTransacaoServCORE</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Credisis\Testes\Teste_SERVCore.CrediSIS.Barramento\bin\Debug\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FormSelecionaSeqFlow .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelecionaSeqFlow .Designer.cs">
+      <DependentUpon>FormSelecionaSeqFlow .cs</DependentUpon>
+    </Compile>
+    <Compile Include="InstituicaoFinanceira.cs" />
+    <Compile Include="Channel.cs" />
+    <Compile Include="Comuns.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAdicionaEntradaSaida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAdicionaEntradaSaida.Designer.cs">
+      <DependentUpon>FormAdicionaEntradaSaida.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEditaEval.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditaEval.Designer.cs">
+      <DependentUpon>FormEditaEval.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEditar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditar.Designer.cs">
+      <DependentUpon>FormEditar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEntradasSaidas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEntradasSaidas.Designer.cs">
+      <DependentUpon>FormEntradasSaidas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPasso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPasso.Designer.cs">
+      <DependentUpon>FormPasso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLabel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLabel.Designer.cs">
+      <DependentUpon>FormLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormProcesso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProcesso.Designer.cs">
+      <DependentUpon>FormProcesso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormServCoreDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormServCoreDB.Designer.cs">
+      <DependentUpon>FormServCoreDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Labels.cs" />
+    <Compile Include="Orch.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Conexao.cs" />
+    <Compile Include="TecladoData.cs" />
+    <Compile Include="Transacao.cs" />
+    <Compile Include="Util.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAdicionaEntradaSaida.resx">
+      <DependentUpon>FormAdicionaEntradaSaida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditaEval.resx">
+      <DependentUpon>FormEditaEval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditar.resx">
+      <DependentUpon>FormEditar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEntradasSaidas.resx">
+      <DependentUpon>FormEntradasSaidas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelecionaSeqFlow .resx">
+      <DependentUpon>FormSelecionaSeqFlow .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPasso.resx">
+      <DependentUpon>FormPasso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLabel.resx">
+      <DependentUpon>FormLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProcesso.resx">
+      <DependentUpon>FormProcesso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormServCoreDB.resx">
+      <DependentUpon>FormServCoreDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
