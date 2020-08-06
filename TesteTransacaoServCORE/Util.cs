@@ -126,6 +126,38 @@ namespace TesteTransacaoServCORE
             return retorno;
         }
 
+        public static bool GravaArquivoConfig(string caminho, string conteudo, out string saida)
+        {
+            bool retorno = false;
+            saida = string.Empty;
+
+            try
+            {
+                InicializaCaminho(caminho);
+
+                FileInfo filenfo = new FileInfo("config.json");
+
+                if (filenfo.Exists)
+                    filenfo.Delete();
+
+                StreamWriter sw = File.AppendText(filenfo.FullName);
+                sw.Write(conteudo);
+
+                sw.Flush();
+                sw.Close();
+                sw.Dispose();
+
+                retorno = true;
+
+            }
+            catch (Exception exMsg)
+            {
+                saida = "\nErro na criação do arquivo config.json: " + exMsg;
+            }
+
+            return retorno;
+        }
+
         private static void InicializaCaminho(string caminho)
         {
             if (Directory.Exists(caminho))

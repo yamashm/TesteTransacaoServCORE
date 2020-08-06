@@ -52,6 +52,27 @@ namespace TesteTransacaoServCORE
             return sb.ToString();
         }
 
+        public string Atualiza()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("UPDATE TB_LABEL SET ID_IF = ")
+                  .Append(ID_IF)
+                  .Append(", ")
+                  .Append("LOCALE = '")
+               .Append(LOCALE)
+               .Append("', ")
+               .Append("LABEL = '")
+               .Append(LABEL)
+               .Append("' ")
+               .Append("WHERE ID_LABEL = '")
+               .Append(ID_LABEL)
+               .Append("'; ")
+               .Append("\r\n");
+
+            return sb.ToString();
+        }
+
         //public string GeraScript(string caminhoGerar, string ipServidor, string baseDados, string tipoQuery, string tipoOperacao)
         //{
         //    StringBuilder sb = new StringBuilder();

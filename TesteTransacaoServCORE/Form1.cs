@@ -46,9 +46,43 @@ namespace TesteTransacaoServCORE
 
             btnExecutarOrch.Enabled = false;
 
+            CarregaConfiguracoes();
+
             MontaDadosComuns();
 
             MontaComboServidores();
+
+        }
+
+        private void CarregaConfiguracoes()
+        {
+            string directory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).Substring(6);
+
+            string path = Path.Combine(directory, "config.json");
+
+            if (File.Exists(path))
+            {
+                dynamic stuff = JsonConvert.DeserializeObject(File.ReadAllText(path));
+
+                txbCaminhoExecutados.Text = stuff.caminhoScriptsExecutados;
+                txbCaminhoGerados.Text = stuff.caminhoScriptsGerados;
+                txbCaminhoSaidaServcoreDB.Text = stuff.caminhoServcoreDB;
+            }
+            else
+            {
+                Config config = new Config();
+
+                config.caminhoScriptsExecutados = Path.Combine(directory, "DB");
+                config.caminhoScriptsGerados = Path.Combine(directory, "DB");
+                config.caminhoServcoreDB = Path.Combine(directory, "DB");
+                string saida;
+
+                Util.GravaArquivoConfig(directory, JsonConvert.SerializeObject(config), out saida);
+
+                txbCaminhoExecutados.Text = config.caminhoScriptsExecutados;
+                txbCaminhoGerados.Text = config.caminhoScriptsGerados;
+                txbCaminhoSaidaServcoreDB.Text = config.caminhoServcoreDB;
+            }
 
         }
 
@@ -62,12 +96,12 @@ namespace TesteTransacaoServCORE
 
                 foreach(string s in Directory.GetDirectories(caminho))
                 {
-                    Conexao con = new Conexao();
-
-                    con.server = new DirectoryInfo(s).Name;
-
                     foreach (string s2 in Directory.GetDirectories(s))
                     {
+                        Conexao con = new Conexao();
+
+                        con.server = new DirectoryInfo(s).Name;
+
                         con.database = new DirectoryInfo(s2).Name;
 
                         if (File.Exists(Path.Combine(s2, "db.properties")))
@@ -551,7 +585,7 @@ namespace TesteTransacaoServCORE
                     }
                 }
 
-                GeraServCoreDB(txbCaminhoServcoreDB.Text, sb.ToString());
+                GeraServCoreDB(txbCaminhoSaidaServcoreDB.Text, sb.ToString());
             }
             //GeraServCoreDB(txbCaminhoServcoreDB.Text);
         }
@@ -598,7 +632,7 @@ namespace TesteTransacaoServCORE
                 if (label.ShowDialog() == DialogResult.OK)
                 {
                     _tipoOperacao = "DELETE INSERT";
-                    txbQueryLabels.Text = GeraScriptLabel(labelSelecionado.Novo(), labelSelecionado.ID_LABEL);
+                    txbQueryLabels.Text = GeraScriptLabel(labelSelecionado.Atualiza(), labelSelecionado.ID_LABEL);
 
                     txbQueryLabels.Focus();
 
@@ -1518,6 +1552,9 @@ namespace TesteTransacaoServCORE
 
                 }
 
+                if(o.RESULT_EVAL != "" && o.RESULT_EVAL != "NULL")
+                    sb.Append("RESULT_EVAL ").Append(o.RESULT_EVAL).Append("\r\n");
+
                 sb.Append("NEXT STEP ").Append(o.NEXT_STEP).Append("\r\n").Append("\r\n");
             }
 
@@ -1561,6 +1598,20 @@ namespace TesteTransacaoServCORE
 
                 txbQueryOrch.Text = GeraScriptOrch(sb.ToString(), "TODOS");
             }
+        }
+
+        private void btnSalvarConfiguracao_Click(object sender, EventArgs e)
+        {
+            Config config = new Config();
+
+            config.caminhoScriptsExecutados = txbCaminhoExecutados.Text;
+            config.caminhoScriptsGerados = txbCaminhoGerados.Text;
+            config.caminhoServcoreDB = txbCaminhoSaidaServcoreDB.Text;
+
+            string directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
+            string saida;
+
+            Util.GravaArquivoConfig(directory, JsonConvert.SerializeObject(config), out saida);
         }
     }
 }

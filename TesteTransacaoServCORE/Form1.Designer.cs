@@ -71,6 +71,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnSalvarOrch = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.ltbPassos = new System.Windows.Forms.ListBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -108,10 +109,6 @@
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txbCaminhoSaidaServcoreDB = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txbCaminhoServcoreDB = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txbCaminhoExecutados = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txbCaminhoGerados = new System.Windows.Forms.TextBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -119,7 +116,9 @@
             this.txbTecladoSenha = new System.Windows.Forms.TextBox();
             this.txbTecladoDataSenha = new System.Windows.Forms.TextBox();
             this.txbTecladoJSON = new System.Windows.Forms.TextBox();
-            this.btnSalvarOrch = new System.Windows.Forms.Button();
+            this.btnSalvarConfiguracao = new System.Windows.Forms.Button();
+            this.txbCaminhoExecutados = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.gpbTransacoes.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -591,6 +590,16 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
+            // btnSalvarOrch
+            // 
+            this.btnSalvarOrch.Location = new System.Drawing.Point(120, 25);
+            this.btnSalvarOrch.Name = "btnSalvarOrch";
+            this.btnSalvarOrch.Size = new System.Drawing.Size(75, 23);
+            this.btnSalvarOrch.TabIndex = 6;
+            this.btnSalvarOrch.Text = "Salvar";
+            this.btnSalvarOrch.UseVisualStyleBackColor = true;
+            this.btnSalvarOrch.Click += new System.EventHandler(this.btnSalvarOrch_Click);
+            // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.ltbPassos);
@@ -936,10 +945,9 @@
             // 
             // groupBox8
             // 
+            this.groupBox8.Controls.Add(this.btnSalvarConfiguracao);
             this.groupBox8.Controls.Add(this.label10);
             this.groupBox8.Controls.Add(this.txbCaminhoSaidaServcoreDB);
-            this.groupBox8.Controls.Add(this.label9);
-            this.groupBox8.Controls.Add(this.txbCaminhoServcoreDB);
             this.groupBox8.Controls.Add(this.label7);
             this.groupBox8.Controls.Add(this.txbCaminhoExecutados);
             this.groupBox8.Controls.Add(this.label8);
@@ -953,7 +961,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(7, 115);
+            this.label10.Location = new System.Drawing.Point(8, 89);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(141, 13);
             this.label10.TabIndex = 18;
@@ -961,54 +969,20 @@
             // 
             // txbCaminhoSaidaServcoreDB
             // 
-            this.txbCaminhoSaidaServcoreDB.Location = new System.Drawing.Point(152, 112);
+            this.txbCaminhoSaidaServcoreDB.Location = new System.Drawing.Point(151, 86);
             this.txbCaminhoSaidaServcoreDB.Name = "txbCaminhoSaidaServcoreDB";
             this.txbCaminhoSaidaServcoreDB.Size = new System.Drawing.Size(659, 20);
             this.txbCaminhoSaidaServcoreDB.TabIndex = 17;
             this.txbCaminhoSaidaServcoreDB.Text = "D:\\Diebold\\Ferramentas\\TesteTransacaoServCORE\\DB";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(7, 89);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(144, 13);
-            this.label9.TabIndex = 16;
-            this.label9.Text = "Caminho Scripts Servcore-db";
-            // 
-            // txbCaminhoServcoreDB
-            // 
-            this.txbCaminhoServcoreDB.Location = new System.Drawing.Point(152, 86);
-            this.txbCaminhoServcoreDB.Name = "txbCaminhoServcoreDB";
-            this.txbCaminhoServcoreDB.Size = new System.Drawing.Size(659, 20);
-            this.txbCaminhoServcoreDB.TabIndex = 15;
-            this.txbCaminhoServcoreDB.Text = "D:\\Diebold\\Ferramentas\\TesteTransacaoServCORE\\DB";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 63);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(142, 13);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Caminho Scripts Executados";
-            // 
-            // txbCaminhoExecutados
-            // 
-            this.txbCaminhoExecutados.Location = new System.Drawing.Point(152, 60);
-            this.txbCaminhoExecutados.Name = "txbCaminhoExecutados";
-            this.txbCaminhoExecutados.Size = new System.Drawing.Size(659, 20);
-            this.txbCaminhoExecutados.TabIndex = 13;
-            this.txbCaminhoExecutados.Text = "D:\\Diebold\\Ferramentas\\TesteTransacaoServCORE\\DB";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(7, 37);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(126, 13);
+            this.label8.Size = new System.Drawing.Size(129, 13);
             this.label8.TabIndex = 12;
-            this.label8.Text = "Caminho Scripts Gerados";
+            this.label8.Text = "Caminho Scripts  Gerados";
             // 
             // txbCaminhoGerados
             // 
@@ -1069,15 +1043,32 @@
             this.txbTecladoJSON.Size = new System.Drawing.Size(567, 419);
             this.txbTecladoJSON.TabIndex = 1;
             // 
-            // btnSalvarOrch
+            // btnSalvarConfiguracao
             // 
-            this.btnSalvarOrch.Location = new System.Drawing.Point(120, 25);
-            this.btnSalvarOrch.Name = "btnSalvarOrch";
-            this.btnSalvarOrch.Size = new System.Drawing.Size(75, 23);
-            this.btnSalvarOrch.TabIndex = 6;
-            this.btnSalvarOrch.Text = "Salvar";
-            this.btnSalvarOrch.UseVisualStyleBackColor = true;
-            this.btnSalvarOrch.Click += new System.EventHandler(this.btnSalvarOrch_Click);
+            this.btnSalvarConfiguracao.Location = new System.Drawing.Point(152, 131);
+            this.btnSalvarConfiguracao.Name = "btnSalvarConfiguracao";
+            this.btnSalvarConfiguracao.Size = new System.Drawing.Size(75, 23);
+            this.btnSalvarConfiguracao.TabIndex = 19;
+            this.btnSalvarConfiguracao.Text = "Salvar";
+            this.btnSalvarConfiguracao.UseVisualStyleBackColor = true;
+            this.btnSalvarConfiguracao.Click += new System.EventHandler(this.btnSalvarConfiguracao_Click);
+            // 
+            // txbCaminhoExecutados
+            // 
+            this.txbCaminhoExecutados.Location = new System.Drawing.Point(152, 60);
+            this.txbCaminhoExecutados.Name = "txbCaminhoExecutados";
+            this.txbCaminhoExecutados.Size = new System.Drawing.Size(659, 20);
+            this.txbCaminhoExecutados.TabIndex = 13;
+            this.txbCaminhoExecutados.Text = "D:\\Diebold\\Ferramentas\\TesteTransacaoServCORE\\DB";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 63);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(142, 13);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Caminho Scripts Executados";
             // 
             // Form1
             // 
@@ -1172,13 +1163,9 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txbCaminhoExecutados;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txbCaminhoGerados;
         private System.Windows.Forms.Button btnServcoreDB;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txbCaminhoServcoreDB;
         private System.Windows.Forms.CheckBox ckbIncluiMenu;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txbCaminhoSaidaServcoreDB;
@@ -1217,6 +1204,9 @@
         private System.Windows.Forms.TextBox txbTecladoDataSenha;
         private System.Windows.Forms.TextBox txbTecladoJSON;
         private System.Windows.Forms.Button btnSalvarOrch;
+        private System.Windows.Forms.Button btnSalvarConfiguracao;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txbCaminhoExecutados;
     }
 }
 
