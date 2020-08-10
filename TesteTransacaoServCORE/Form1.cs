@@ -999,7 +999,8 @@ namespace TesteTransacaoServCORE
                             else
                                 entrada.ID_PROCESS = "";
 
-                            t.Entradas.Add(entrada);
+                            if(t.ID_IF_2 == r_input["ID_IF"].ToString() && t.ID_CHANNEL_2 == r_input["ID_CHANNEL"].ToString()) 
+                                t.Entradas.Add(entrada);
                         }
 
                         //var groupEntradas = t.Entradas.GroupBy(x => x.SEQ_FLOW);
@@ -1033,7 +1034,8 @@ namespace TesteTransacaoServCORE
                             else
                                 saida.ID_PROCESS = "";
 
-                            t.Saidas.Add(saida);
+                            if (t.ID_IF_2 == r_output["ID_IF"].ToString() && t.ID_CHANNEL_2 == r_output["ID_CHANNEL"].ToString())
+                                t.Saidas.Add(saida);
                         }
 
                         //var groupSaidas= t.Saidas.GroupBy(x => x.SEQ_FLOW);
