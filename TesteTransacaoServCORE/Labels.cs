@@ -73,6 +73,13 @@ namespace TesteTransacaoServCORE
             return sb.ToString();
         }
 
+        public override string ToString()
+        {
+            return ID_LABEL;
+        }
+
+
+
         //public string GeraScript(string caminhoGerar, string ipServidor, string baseDados, string tipoQuery, string tipoOperacao)
         //{
         //    StringBuilder sb = new StringBuilder();

@@ -14,5 +14,6 @@ namespace TesteTransacaoServCORE
         public static Orch orchBasica { get; set; }
         public static List<Activity> atividades { get; set; }
         public static List<Process> processos { get; set; }
+        public static ConfigIfChannel configBasica { get; set; }
     }
 }

@@ -132,6 +132,7 @@ namespace TesteTransacaoServCORE
         }
     }
 
+    [Serializable]
     public class Process
     {
         public string ID_PROCESS { get; set; }
@@ -158,6 +159,18 @@ namespace TesteTransacaoServCORE
                .Append(PROPAGATION_TRANSACTION).Append(",'")
                .Append(FINISH_TRANSACTION).Append("',")
                .Append(Util.TrataVarcharNULL(FULL_PATH)).Append(");")
+               .Append("\r\n");
+
+            return sb.ToString();
+        }
+
+        public string Remove()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("DELETE FROM TB_PROCESS WHERE ID_PROCESS = ")
+                  .Append(ID_PROCESS)
+                  .Append(";")
                .Append("\r\n");
 
             return sb.ToString();

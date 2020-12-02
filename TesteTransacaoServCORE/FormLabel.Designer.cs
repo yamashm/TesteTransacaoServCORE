@@ -146,7 +146,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FormLabel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Processo";
+            this.Text = "Label";
             this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();

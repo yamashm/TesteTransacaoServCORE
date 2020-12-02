@@ -107,8 +107,11 @@
             this.ltbLabels = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.btnSalvarConfiguracao = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.txbCaminhoSaidaServcoreDB = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txbCaminhoExecutados = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txbCaminhoGerados = new System.Windows.Forms.TextBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -116,9 +119,49 @@
             this.txbTecladoSenha = new System.Windows.Forms.TextBox();
             this.txbTecladoDataSenha = new System.Windows.Forms.TextBox();
             this.txbTecladoJSON = new System.Windows.Forms.TextBox();
-            this.btnSalvarConfiguracao = new System.Windows.Forms.Button();
-            this.txbCaminhoExecutados = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.txbQueryConfig = new System.Windows.Forms.TextBox();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
+            this.btnEditarConfig = new System.Windows.Forms.Button();
+            this.btnRemoverConfig = new System.Windows.Forms.Button();
+            this.btnAdicionarConfig = new System.Windows.Forms.Button();
+            this.ltbConfig = new System.Windows.Forms.ListBox();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txbQuebraStringCampo = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txbQuebraStringCondicao = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txbQuebraStringTabela = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txbQuebraStringTamanho = new System.Windows.Forms.TextBox();
+            this.btnThemeQuebra = new System.Windows.Forms.Button();
+            this.txbThemeParts = new System.Windows.Forms.TextBox();
+            this.txbTheme = new System.Windows.Forms.TextBox();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.groupBox15 = new System.Windows.Forms.GroupBox();
+            this.button14 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
+            this.txbQueryMenu = new System.Windows.Forms.TextBox();
+            this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.button16 = new System.Windows.Forms.Button();
+            this.button17 = new System.Windows.Forms.Button();
+            this.button18 = new System.Windows.Forms.Button();
+            this.button19 = new System.Windows.Forms.Button();
+            this.btnEditarMenu = new System.Windows.Forms.Button();
+            this.button21 = new System.Windows.Forms.Button();
+            this.button22 = new System.Windows.Forms.Button();
+            this.ltbMenu = new System.Windows.Forms.ListBox();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.ltbChangeLog = new System.Windows.Forms.ListBox();
             this.gpbTransacoes.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -138,6 +181,15 @@
             this.tabPage3.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            this.groupBox13.SuspendLayout();
+            this.groupBox14.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            this.tabPage8.SuspendLayout();
+            this.groupBox15.SuspendLayout();
+            this.groupBox16.SuspendLayout();
+            this.tabPage9.SuspendLayout();
             this.SuspendLayout();
             // 
             // gpbTransacoes
@@ -548,6 +600,10 @@
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabPage6);
+            this.tabControl1.Controls.Add(this.tabPage7);
+            this.tabControl1.Controls.Add(this.tabPage8);
+            this.tabControl1.Controls.Add(this.tabPage9);
             this.tabControl1.Location = new System.Drawing.Point(12, 148);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -958,6 +1014,16 @@
             this.groupBox8.TabIndex = 1;
             this.groupBox8.TabStop = false;
             // 
+            // btnSalvarConfiguracao
+            // 
+            this.btnSalvarConfiguracao.Location = new System.Drawing.Point(152, 131);
+            this.btnSalvarConfiguracao.Name = "btnSalvarConfiguracao";
+            this.btnSalvarConfiguracao.Size = new System.Drawing.Size(75, 23);
+            this.btnSalvarConfiguracao.TabIndex = 19;
+            this.btnSalvarConfiguracao.Text = "Salvar";
+            this.btnSalvarConfiguracao.UseVisualStyleBackColor = true;
+            this.btnSalvarConfiguracao.Click += new System.EventHandler(this.btnSalvarConfiguracao_Click);
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -974,6 +1040,23 @@
             this.txbCaminhoSaidaServcoreDB.Size = new System.Drawing.Size(659, 20);
             this.txbCaminhoSaidaServcoreDB.TabIndex = 17;
             this.txbCaminhoSaidaServcoreDB.Text = "D:\\Diebold\\Ferramentas\\TesteTransacaoServCORE\\DB";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 63);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(142, 13);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Caminho Scripts Executados";
+            // 
+            // txbCaminhoExecutados
+            // 
+            this.txbCaminhoExecutados.Location = new System.Drawing.Point(152, 60);
+            this.txbCaminhoExecutados.Name = "txbCaminhoExecutados";
+            this.txbCaminhoExecutados.Size = new System.Drawing.Size(659, 20);
+            this.txbCaminhoExecutados.TabIndex = 13;
+            this.txbCaminhoExecutados.Text = "D:\\Diebold\\Ferramentas\\TesteTransacaoServCORE\\DB";
             // 
             // label8
             // 
@@ -1043,32 +1126,442 @@
             this.txbTecladoJSON.Size = new System.Drawing.Size(567, 419);
             this.txbTecladoJSON.TabIndex = 1;
             // 
-            // btnSalvarConfiguracao
+            // tabPage6
             // 
-            this.btnSalvarConfiguracao.Location = new System.Drawing.Point(152, 131);
-            this.btnSalvarConfiguracao.Name = "btnSalvarConfiguracao";
-            this.btnSalvarConfiguracao.Size = new System.Drawing.Size(75, 23);
-            this.btnSalvarConfiguracao.TabIndex = 19;
-            this.btnSalvarConfiguracao.Text = "Salvar";
-            this.btnSalvarConfiguracao.UseVisualStyleBackColor = true;
-            this.btnSalvarConfiguracao.Click += new System.EventHandler(this.btnSalvarConfiguracao_Click);
+            this.tabPage6.Controls.Add(this.groupBox12);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Size = new System.Drawing.Size(979, 475);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "Config If Channel";
+            this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // txbCaminhoExecutados
+            // groupBox12
             // 
-            this.txbCaminhoExecutados.Location = new System.Drawing.Point(152, 60);
-            this.txbCaminhoExecutados.Name = "txbCaminhoExecutados";
-            this.txbCaminhoExecutados.Size = new System.Drawing.Size(659, 20);
-            this.txbCaminhoExecutados.TabIndex = 13;
-            this.txbCaminhoExecutados.Text = "D:\\Diebold\\Ferramentas\\TesteTransacaoServCORE\\DB";
+            this.groupBox12.Controls.Add(this.groupBox13);
+            this.groupBox12.Controls.Add(this.groupBox14);
+            this.groupBox12.Controls.Add(this.ltbConfig);
+            this.groupBox12.Location = new System.Drawing.Point(7, 4);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(964, 466);
+            this.groupBox12.TabIndex = 2;
+            this.groupBox12.TabStop = false;
             // 
-            // label7
+            // groupBox13
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 63);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(142, 13);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Caminho Scripts Executados";
+            this.groupBox13.Controls.Add(this.button4);
+            this.groupBox13.Controls.Add(this.button7);
+            this.groupBox13.Controls.Add(this.txbQueryConfig);
+            this.groupBox13.Location = new System.Drawing.Point(349, 54);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(600, 406);
+            this.groupBox13.TabIndex = 4;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "Query";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(6, 377);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 5;
+            this.button4.Text = "Limpar";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(519, 377);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 4;
+            this.button7.Text = "Executar";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // txbQueryConfig
+            // 
+            this.txbQueryConfig.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbQueryConfig.Location = new System.Drawing.Point(6, 19);
+            this.txbQueryConfig.Multiline = true;
+            this.txbQueryConfig.Name = "txbQueryConfig";
+            this.txbQueryConfig.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txbQueryConfig.Size = new System.Drawing.Size(588, 352);
+            this.txbQueryConfig.TabIndex = 0;
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.Controls.Add(this.button9);
+            this.groupBox14.Controls.Add(this.button11);
+            this.groupBox14.Controls.Add(this.button12);
+            this.groupBox14.Controls.Add(this.button13);
+            this.groupBox14.Controls.Add(this.btnEditarConfig);
+            this.groupBox14.Controls.Add(this.btnRemoverConfig);
+            this.groupBox14.Controls.Add(this.btnAdicionarConfig);
+            this.groupBox14.Location = new System.Drawing.Point(253, 48);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(90, 412);
+            this.groupBox14.TabIndex = 2;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "Operações";
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(6, 195);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(75, 23);
+            this.button9.TabIndex = 8;
+            this.button9.Text = "servcoreDB";
+            this.button9.UseVisualStyleBackColor = true;
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(5, 166);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(75, 23);
+            this.button11.TabIndex = 7;
+            this.button11.Text = "servcoreDB";
+            this.button11.UseVisualStyleBackColor = true;
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(6, 137);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(75, 23);
+            this.button12.TabIndex = 6;
+            this.button12.Text = "Update";
+            this.button12.UseVisualStyleBackColor = true;
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(6, 108);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(75, 23);
+            this.button13.TabIndex = 5;
+            this.button13.Text = "Insert";
+            this.button13.UseVisualStyleBackColor = true;
+            // 
+            // btnEditarConfig
+            // 
+            this.btnEditarConfig.Location = new System.Drawing.Point(6, 79);
+            this.btnEditarConfig.Name = "btnEditarConfig";
+            this.btnEditarConfig.Size = new System.Drawing.Size(75, 23);
+            this.btnEditarConfig.TabIndex = 3;
+            this.btnEditarConfig.Text = "Editar";
+            this.btnEditarConfig.UseVisualStyleBackColor = true;
+            this.btnEditarConfig.Click += new System.EventHandler(this.btnEditarConfig_Click);
+            // 
+            // btnRemoverConfig
+            // 
+            this.btnRemoverConfig.Location = new System.Drawing.Point(6, 50);
+            this.btnRemoverConfig.Name = "btnRemoverConfig";
+            this.btnRemoverConfig.Size = new System.Drawing.Size(75, 23);
+            this.btnRemoverConfig.TabIndex = 2;
+            this.btnRemoverConfig.Text = "Remover";
+            this.btnRemoverConfig.UseVisualStyleBackColor = true;
+            this.btnRemoverConfig.Click += new System.EventHandler(this.btnRemoverConfig_Click);
+            // 
+            // btnAdicionarConfig
+            // 
+            this.btnAdicionarConfig.Location = new System.Drawing.Point(6, 21);
+            this.btnAdicionarConfig.Name = "btnAdicionarConfig";
+            this.btnAdicionarConfig.Size = new System.Drawing.Size(75, 23);
+            this.btnAdicionarConfig.TabIndex = 3;
+            this.btnAdicionarConfig.Text = "Adicionar";
+            this.btnAdicionarConfig.UseVisualStyleBackColor = true;
+            this.btnAdicionarConfig.Click += new System.EventHandler(this.btnAdicionarConfig_Click);
+            // 
+            // ltbConfig
+            // 
+            this.ltbConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ltbConfig.FormattingEnabled = true;
+            this.ltbConfig.Location = new System.Drawing.Point(6, 54);
+            this.ltbConfig.Name = "ltbConfig";
+            this.ltbConfig.Size = new System.Drawing.Size(231, 407);
+            this.ltbConfig.TabIndex = 0;
+            this.ltbConfig.SelectedIndexChanged += new System.EventHandler(this.ltbConfig_SelectedIndexChanged);
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.label15);
+            this.tabPage7.Controls.Add(this.txbQuebraStringCampo);
+            this.tabPage7.Controls.Add(this.label14);
+            this.tabPage7.Controls.Add(this.txbQuebraStringCondicao);
+            this.tabPage7.Controls.Add(this.label13);
+            this.tabPage7.Controls.Add(this.txbQuebraStringTabela);
+            this.tabPage7.Controls.Add(this.label9);
+            this.tabPage7.Controls.Add(this.txbQuebraStringTamanho);
+            this.tabPage7.Controls.Add(this.btnThemeQuebra);
+            this.tabPage7.Controls.Add(this.txbThemeParts);
+            this.tabPage7.Controls.Add(this.txbTheme);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(979, 475);
+            this.tabPage7.TabIndex = 6;
+            this.tabPage7.Text = "Quebra String";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(7, 443);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(40, 13);
+            this.label15.TabIndex = 22;
+            this.label15.Text = "Campo";
+            // 
+            // txbQuebraStringCampo
+            // 
+            this.txbQuebraStringCampo.Location = new System.Drawing.Point(53, 440);
+            this.txbQuebraStringCampo.MaxLength = 128;
+            this.txbQuebraStringCampo.Name = "txbQuebraStringCampo";
+            this.txbQuebraStringCampo.Size = new System.Drawing.Size(147, 20);
+            this.txbQuebraStringCampo.TabIndex = 21;
+            this.txbQuebraStringCampo.Text = "VALUE";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(209, 416);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(52, 13);
+            this.label14.TabIndex = 20;
+            this.label14.Text = "Condição";
+            // 
+            // txbQuebraStringCondicao
+            // 
+            this.txbQuebraStringCondicao.Location = new System.Drawing.Point(267, 413);
+            this.txbQuebraStringCondicao.MaxLength = 2048;
+            this.txbQuebraStringCondicao.Name = "txbQuebraStringCondicao";
+            this.txbQuebraStringCondicao.Size = new System.Drawing.Size(694, 20);
+            this.txbQuebraStringCondicao.TabIndex = 19;
+            this.txbQuebraStringCondicao.Text = "KEY_CONFIG=\'THEME\'";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(7, 417);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(40, 13);
+            this.label13.TabIndex = 18;
+            this.label13.Text = "Tabela";
+            // 
+            // txbQuebraStringTabela
+            // 
+            this.txbQuebraStringTabela.Location = new System.Drawing.Point(53, 414);
+            this.txbQuebraStringTabela.MaxLength = 128;
+            this.txbQuebraStringTabela.Name = "txbQuebraStringTabela";
+            this.txbQuebraStringTabela.Size = new System.Drawing.Size(147, 20);
+            this.txbQuebraStringTabela.TabIndex = 17;
+            this.txbQuebraStringTabela.Text = "TB_CONFIG_IF_CHANNEL";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(209, 444);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(52, 13);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Tamanho";
+            // 
+            // txbQuebraStringTamanho
+            // 
+            this.txbQuebraStringTamanho.Location = new System.Drawing.Point(267, 441);
+            this.txbQuebraStringTamanho.MaxLength = 4;
+            this.txbQuebraStringTamanho.Name = "txbQuebraStringTamanho";
+            this.txbQuebraStringTamanho.Size = new System.Drawing.Size(100, 20);
+            this.txbQuebraStringTamanho.TabIndex = 15;
+            this.txbQuebraStringTamanho.Text = "128";
+            // 
+            // btnThemeQuebra
+            // 
+            this.btnThemeQuebra.Location = new System.Drawing.Point(886, 439);
+            this.btnThemeQuebra.Name = "btnThemeQuebra";
+            this.btnThemeQuebra.Size = new System.Drawing.Size(75, 23);
+            this.btnThemeQuebra.TabIndex = 14;
+            this.btnThemeQuebra.Text = "Gerar";
+            this.btnThemeQuebra.UseVisualStyleBackColor = true;
+            this.btnThemeQuebra.Click += new System.EventHandler(this.btnThemeQuebra_Click);
+            // 
+            // txbThemeParts
+            // 
+            this.txbThemeParts.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbThemeParts.Location = new System.Drawing.Point(493, 14);
+            this.txbThemeParts.MaxLength = 327670;
+            this.txbThemeParts.Multiline = true;
+            this.txbThemeParts.Name = "txbThemeParts";
+            this.txbThemeParts.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txbThemeParts.Size = new System.Drawing.Size(468, 393);
+            this.txbThemeParts.TabIndex = 3;
+            // 
+            // txbTheme
+            // 
+            this.txbTheme.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbTheme.Location = new System.Drawing.Point(8, 14);
+            this.txbTheme.MaxLength = 327670;
+            this.txbTheme.Multiline = true;
+            this.txbTheme.Name = "txbTheme";
+            this.txbTheme.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txbTheme.Size = new System.Drawing.Size(468, 393);
+            this.txbTheme.TabIndex = 2;
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.Controls.Add(this.groupBox15);
+            this.tabPage8.Controls.Add(this.groupBox16);
+            this.tabPage8.Controls.Add(this.ltbMenu);
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Size = new System.Drawing.Size(979, 475);
+            this.tabPage8.TabIndex = 7;
+            this.tabPage8.Text = "Menu";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // groupBox15
+            // 
+            this.groupBox15.Controls.Add(this.button14);
+            this.groupBox15.Controls.Add(this.button15);
+            this.groupBox15.Controls.Add(this.txbQueryMenu);
+            this.groupBox15.Location = new System.Drawing.Point(361, 37);
+            this.groupBox15.Name = "groupBox15";
+            this.groupBox15.Size = new System.Drawing.Size(600, 406);
+            this.groupBox15.TabIndex = 7;
+            this.groupBox15.TabStop = false;
+            this.groupBox15.Text = "Query";
+            // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(6, 377);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(75, 23);
+            this.button14.TabIndex = 5;
+            this.button14.Text = "Limpar";
+            this.button14.UseVisualStyleBackColor = true;
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(519, 377);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(75, 23);
+            this.button15.TabIndex = 4;
+            this.button15.Text = "Executar";
+            this.button15.UseVisualStyleBackColor = true;
+            // 
+            // txbQueryMenu
+            // 
+            this.txbQueryMenu.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbQueryMenu.Location = new System.Drawing.Point(6, 19);
+            this.txbQueryMenu.Multiline = true;
+            this.txbQueryMenu.Name = "txbQueryMenu";
+            this.txbQueryMenu.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txbQueryMenu.Size = new System.Drawing.Size(588, 352);
+            this.txbQueryMenu.TabIndex = 0;
+            // 
+            // groupBox16
+            // 
+            this.groupBox16.Controls.Add(this.button16);
+            this.groupBox16.Controls.Add(this.button17);
+            this.groupBox16.Controls.Add(this.button18);
+            this.groupBox16.Controls.Add(this.button19);
+            this.groupBox16.Controls.Add(this.btnEditarMenu);
+            this.groupBox16.Controls.Add(this.button21);
+            this.groupBox16.Controls.Add(this.button22);
+            this.groupBox16.Location = new System.Drawing.Point(265, 31);
+            this.groupBox16.Name = "groupBox16";
+            this.groupBox16.Size = new System.Drawing.Size(90, 412);
+            this.groupBox16.TabIndex = 6;
+            this.groupBox16.TabStop = false;
+            this.groupBox16.Text = "Operações";
+            // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(6, 195);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(75, 23);
+            this.button16.TabIndex = 8;
+            this.button16.Text = "servcoreDB";
+            this.button16.UseVisualStyleBackColor = true;
+            // 
+            // button17
+            // 
+            this.button17.Location = new System.Drawing.Point(5, 166);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(75, 23);
+            this.button17.TabIndex = 7;
+            this.button17.Text = "servcoreDB";
+            this.button17.UseVisualStyleBackColor = true;
+            // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(6, 137);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(75, 23);
+            this.button18.TabIndex = 6;
+            this.button18.Text = "Update";
+            this.button18.UseVisualStyleBackColor = true;
+            // 
+            // button19
+            // 
+            this.button19.Location = new System.Drawing.Point(6, 108);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(75, 23);
+            this.button19.TabIndex = 5;
+            this.button19.Text = "Insert";
+            this.button19.UseVisualStyleBackColor = true;
+            // 
+            // btnEditarMenu
+            // 
+            this.btnEditarMenu.Location = new System.Drawing.Point(6, 79);
+            this.btnEditarMenu.Name = "btnEditarMenu";
+            this.btnEditarMenu.Size = new System.Drawing.Size(75, 23);
+            this.btnEditarMenu.TabIndex = 3;
+            this.btnEditarMenu.Text = "Editar";
+            this.btnEditarMenu.UseVisualStyleBackColor = true;
+            this.btnEditarMenu.Click += new System.EventHandler(this.btnEditarMenu_Click);
+            // 
+            // button21
+            // 
+            this.button21.Location = new System.Drawing.Point(6, 50);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(75, 23);
+            this.button21.TabIndex = 2;
+            this.button21.Text = "Remover";
+            this.button21.UseVisualStyleBackColor = true;
+            // 
+            // button22
+            // 
+            this.button22.Location = new System.Drawing.Point(6, 21);
+            this.button22.Name = "button22";
+            this.button22.Size = new System.Drawing.Size(75, 23);
+            this.button22.TabIndex = 3;
+            this.button22.Text = "Adicionar";
+            this.button22.UseVisualStyleBackColor = true;
+            // 
+            // ltbMenu
+            // 
+            this.ltbMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ltbMenu.FormattingEnabled = true;
+            this.ltbMenu.Location = new System.Drawing.Point(18, 37);
+            this.ltbMenu.Name = "ltbMenu";
+            this.ltbMenu.Size = new System.Drawing.Size(231, 407);
+            this.ltbMenu.TabIndex = 5;
+            // 
+            // tabPage9
+            // 
+            this.tabPage9.Controls.Add(this.ltbChangeLog);
+            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Size = new System.Drawing.Size(979, 475);
+            this.tabPage9.TabIndex = 8;
+            this.tabPage9.Text = "ChangeLog";
+            this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // ltbChangeLog
+            // 
+            this.ltbChangeLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ltbChangeLog.FormattingEnabled = true;
+            this.ltbChangeLog.Location = new System.Drawing.Point(8, 18);
+            this.ltbChangeLog.Name = "ltbChangeLog";
+            this.ltbChangeLog.Size = new System.Drawing.Size(584, 407);
+            this.ltbChangeLog.TabIndex = 6;
             // 
             // Form1
             // 
@@ -1110,6 +1603,18 @@
             this.groupBox8.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox13.PerformLayout();
+            this.groupBox14.ResumeLayout(false);
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
+            this.tabPage8.ResumeLayout(false);
+            this.groupBox15.ResumeLayout(false);
+            this.groupBox15.PerformLayout();
+            this.groupBox16.ResumeLayout(false);
+            this.tabPage9.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1207,6 +1712,49 @@
         private System.Windows.Forms.Button btnSalvarConfiguracao;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txbCaminhoExecutados;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.GroupBox groupBox13;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.TextBox txbQueryConfig;
+        private System.Windows.Forms.GroupBox groupBox14;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button btnEditarConfig;
+        private System.Windows.Forms.Button btnRemoverConfig;
+        private System.Windows.Forms.Button btnAdicionarConfig;
+        private System.Windows.Forms.ListBox ltbConfig;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.Button btnThemeQuebra;
+        private System.Windows.Forms.TextBox txbThemeParts;
+        private System.Windows.Forms.TextBox txbTheme;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txbQuebraStringTamanho;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txbQuebraStringCondicao;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txbQuebraStringTabela;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txbQuebraStringCampo;
+        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.GroupBox groupBox15;
+        private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.TextBox txbQueryMenu;
+        private System.Windows.Forms.GroupBox groupBox16;
+        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.Button btnEditarMenu;
+        private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.ListBox ltbMenu;
+        private System.Windows.Forms.TabPage tabPage9;
+        private System.Windows.Forms.ListBox ltbChangeLog;
     }
 }
 

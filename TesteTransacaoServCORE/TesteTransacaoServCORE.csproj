@@ -48,7 +48,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChangeLog.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="ConfigIfChannel.cs" />
+    <Compile Include="FormConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfig.Designer.cs">
+      <DependentUpon>FormConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMenu .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMenu .Designer.cs">
+      <DependentUpon>FormMenu .cs</DependentUpon>
+    </Compile>
     <Compile Include="FormSelecionaSeqFlow .cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +127,7 @@
       <DependentUpon>FormServCoreDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Labels.cs" />
+    <Compile Include="Menu.cs" />
     <Compile Include="Orch.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -134,6 +149,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEntradasSaidas.resx">
       <DependentUpon>FormEntradasSaidas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfig.resx">
+      <DependentUpon>FormConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMenu .resx">
+      <DependentUpon>FormMenu .cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSelecionaSeqFlow .resx">
       <DependentUpon>FormSelecionaSeqFlow .cs</DependentUpon>

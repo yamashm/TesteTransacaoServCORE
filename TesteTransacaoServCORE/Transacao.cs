@@ -40,16 +40,31 @@ namespace TesteTransacaoServCORE
 
             if (incluiTransaction)// || NOVA)
             {
-                sb.Append("INSERT INTO TB_TRANSACTION (ID_TRANSACTION, DESCRIPTION, STATUS, DATE_LAST_UPDATED, ID_TRN_GROUP, SHORT_DESCRIPTION, CATEGORY)VALUES(")
-                .Append(ID_TRANSACTION).Append(",")
-                .Append("'")
-                .Append(DESCRIPTION).Append("',")
-                .Append("'A'").Append(",")
-                .Append("NULL").Append(",")
-                .Append(ID_TRN_GROUP).Append(",")
-                .Append(Util.TrataVarcharNULL(SHORT_DESCRIPTION)).Append(",'")
-                .Append(CATEGORY).Append("');")
-                .Append("\r\n");
+                if (NOVA)
+                {
+                    sb.Append("INSERT INTO TB_TRANSACTION (ID_TRANSACTION, DESCRIPTION, STATUS, DATE_LAST_UPDATED, ID_TRN_GROUP, SHORT_DESCRIPTION, CATEGORY)VALUES(")
+                    .Append(ID_TRANSACTION).Append(",")
+                    .Append("'")
+                    .Append(DESCRIPTION).Append("',")
+                    .Append("'A'").Append(",")
+                    .Append("NULL").Append(",")
+                    .Append(ID_TRN_GROUP).Append(",")
+                    .Append(Util.TrataVarcharNULL(SHORT_DESCRIPTION)).Append(",'")
+                    .Append(CATEGORY).Append("');")
+                    .Append("\r\n");
+                }
+                else
+                {
+                    sb.Append("UPDATE TB_TRANSACTION SET DESCRIPTION = '")
+                        .Append(DESCRIPTION)
+                        .Append("', ")
+                        .Append("SHORT_DESCRIPTION = '")
+                        .Append(SHORT_DESCRIPTION)
+                        .Append("' WHERE ID_TRANSACTION = ")
+                        .Append(ID_TRANSACTION)
+                        .Append(";")
+                        .Append("\r\n");
+                }
             }
 
             if (incluiCHNTRN)
@@ -185,7 +200,8 @@ namespace TesteTransacaoServCORE
 
             if (incluiProcess)
             {
-                sb.Append("DELETE FROM TB_TRANSACTION_PROCESS WHERE ID_IF = " + ID_IF + " AND ID_CHANNEL = " + ID_CHANNEL + " AND ID_TRANSACTION = ")
+                //sb.Append("DELETE FROM TB_TRANSACTION_PROCESS WHERE ID_IF = " + ID_IF + " AND ID_CHANNEL = " + ID_CHANNEL + " AND ID_TRANSACTION = ")
+                sb.Append("DELETE FROM TB_TRANSACTION_PROCESS WHERE ID_TRANSACTION = ")
                     .Append(ID_TRANSACTION)
                     .Append(";")
                     .Append("\r\n");
@@ -197,10 +213,10 @@ namespace TesteTransacaoServCORE
                 //.Append(idTransacao)
                 //.Append("\r\n");
 
-                sb.Append("DELETE FROM TB_MENU WHERE ID_TRANSACTION = ")
-               .Append(ID_TRANSACTION)
-               .Append(";")
-               .Append("\r\n");
+               // sb.Append("DELETE FROM TB_MENU WHERE ID_TRANSACTION = ")
+               //.Append(ID_TRANSACTION)
+               //.Append(";")
+               //.Append("\r\n");
             }
 
             if (incluiPermission)
@@ -229,24 +245,34 @@ namespace TesteTransacaoServCORE
 
             if (incluiTransaction)
             {
-                sb.Append("DELETE FROM TB_TRANSACTION WHERE ID_TRANSACTION = ")
-                    .Append(ID_TRANSACTION)
-                    .Append(";")
-                    .Append("\r\n");
+                //sb.Append("DELETE FROM TB_TRANSACTION WHERE ID_TRANSACTION = ")
+                //    .Append(ID_TRANSACTION)
+                //    .Append(";")
+                //    .Append("\r\n");
             }
             
 
             if (editaInputOutput)
             {
-                sb.Append("DELETE FROM TB_TRANSACTION_INPUT WHERE ID_IF = " + ID_IF_2 + " AND ID_CHANNEL = " + ID_CHANNEL_2 + " AND ID_TRANSACTION = ")
+                sb.Append("DELETE FROM TB_TRANSACTION_INPUT WHERE ID_TRANSACTION = ")
                     .Append(ID_TRANSACTION)
                     .Append(";")
                     .Append("\r\n");
 
-                sb.Append("DELETE FROM TB_TRANSACTION_OUTPUT WHERE ID_IF = " + ID_IF_2 + " AND ID_CHANNEL = " + ID_CHANNEL_2 + " AND ID_TRANSACTION = ")
+                sb.Append("DELETE FROM TB_TRANSACTION_OUTPUT WHERE ID_TRANSACTION = ")
                     .Append(ID_TRANSACTION)
                     .Append(";")
                     .Append("\r\n");
+
+    //            sb.Append("DELETE FROM TB_TRANSACTION_INPUT WHERE ID_IF = " + ID_IF_2 + " AND ID_CHANNEL = " + ID_CHANNEL_2 + " AND ID_TRANSACTION = ")
+    //.Append(ID_TRANSACTION)
+    //.Append(";")
+    //.Append("\r\n");
+
+    //            sb.Append("DELETE FROM TB_TRANSACTION_OUTPUT WHERE ID_IF = " + ID_IF_2 + " AND ID_CHANNEL = " + ID_CHANNEL_2 + " AND ID_TRANSACTION = ")
+    //                .Append(ID_TRANSACTION)
+    //                .Append(";")
+    //                .Append("\r\n");
             }
 
             return sb.ToString();
@@ -379,20 +405,6 @@ namespace TesteTransacaoServCORE
     {
         public string ID_TRN_GROUP { get; set; }
         public string DESCRIPTION { get; set; }
-    }
-
-    public class Menu
-    {
-        public string ID_MENU { get; set; }
-        public string ID_MENU_PARENT { get; set; }
-        public string ID_CHANNEL { get; set; }
-        public string DESCRIPTION { get; set; }
-        public string ACTION { get; set; }
-        public string ID_IMG { get; set; }
-        public string LEVEL_MENU { get; set; }
-        public string ORDER_NUMBER { get; set; }
-        public string DATA { get; set; }
-        public string STATUS { get; set; }
     }
 
 }

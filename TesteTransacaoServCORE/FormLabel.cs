@@ -24,8 +24,8 @@ namespace TesteTransacaoServCORE
             txb_LOCALE.Text = entrada.LOCALE;
             txb_LABEL.Text = entrada.LABEL;
 
-            if (entrada.ID_LABEL != null)
-                txb_ID_LABEL.Enabled = false;
+            //if (entrada.ID_LABEL != null)
+            //    txb_ID_LABEL.Enabled = false;
         }
 
         private void btnOk_Click(object sender, EventArgs e)

@@ -97,9 +97,9 @@ namespace TesteTransacaoServCORE
                 nomearquivointeiro.Append(caminho).Append("\\");
 
                 StringBuilder nomearquivo = new StringBuilder();
-                nomearquivo.Append("servcore-").Append(Util.ObtemDataHoraSistema().Year.ToString())
+                nomearquivo.Append("0000-servcore-").Append("cliente").Append("-dml-").Append(Util.ObtemDataHoraSistema().Year.ToString())
                     .Append(Util.ObtemDataHoraSistema().Month.ToString().PadLeft(2, '0'))
-                    .Append(Util.ObtemDataHoraSistema().Day.ToString().PadLeft(2, '0')).Append("-V001C001R001-001-dml.sql");
+                    .Append(Util.ObtemDataHoraSistema().Day.ToString().PadLeft(2, '0')).Append("-V001C001R001.sql");
 
                 nomearquivointeiro.Append(nomearquivo);
 

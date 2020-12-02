@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace TesteTransacaoServCORE
@@ -22,7 +23,7 @@ namespace TesteTransacaoServCORE
 
         List<Orch> _orchs;
 
-        List<Label> _labels;
+        //List<Label> _labels;
 
         List<Channel> _channels;
 
@@ -371,8 +372,10 @@ namespace TesteTransacaoServCORE
                     CarregaOrch();
                     CarregaGruposTransacao();
                     CarregaLabels();
-
+                    CarregaConfigsIfChannel();
                     CarregaTransacoes();
+                    CarregaMenus();
+                    CarregaChangeLog();
 
                     //string caminho = Path.Combine(txbCaminhoGerados.Text, txb_Server.Text, txb_Database.Text, "db.properties");
 
@@ -608,22 +611,51 @@ namespace TesteTransacaoServCORE
         {
             Process process = Comuns.processos.Find(x => x.ID_PROCESS == ltbProcessos.SelectedItem.ToString());
 
-            FormProcesso processo = new FormProcesso(process);
+            Process novoProcess = (Process)Util.DeepClone(process);
+
+            FormProcesso processo = new FormProcesso(novoProcess);
 
             if (processo.ShowDialog() == DialogResult.OK)
             {
+                StringBuilder sb = new StringBuilder();
+
                 _tipoOperacao = "INSERT";
-                txbQueryOrch.Text = GeraScriptProcess(process.Novo(), process.ID_PROCESS);
+                sb.Append(GeraScriptProcess(novoProcess.Novo(), novoProcess.ID_PROCESS));
+
+                foreach (Orch o in _orchs.FindAll(x => x.ID_PROCESS == ltbProcessos.SelectedItem.ToString()))
+                {
+                    Orch novaOrch = (Orch)Util.DeepClone(o);
+                    novaOrch.ID_PROCESS = novoProcess.ID_PROCESS;
+                    _orchs.Add(novaOrch);
+
+                    sb.Append(GeraScriptOrch(novaOrch.Nova(), novaOrch.STEP));
+                }
+
+                txbQueryOrch.Text = sb.ToString();
                 txbQueryOrch.Focus();
 
-                //CarregaOrch();
+                Comuns.processos.Add(novoProcess);
+
+                CarregaListaProcessos();
+                //CarregaListaOrch();
                 btnExecutarOrch.Enabled = true;
+            }
+        }
+
+        private void CarregaListaProcessos()
+        {
+            ltbProcessos.Items.Clear();
+
+            foreach(Process p in Comuns.processos)
+            {
+                ltbProcessos.Items.Add(p.ID_PROCESS);
             }
         }
 
         private void btnEditarLabel_Click(object sender, EventArgs e)
         {
-            Label labelSelecionado = _labels.Find(x => x.ID_LABEL == ltbLabels.SelectedItem.ToString());
+            //Label labelSelecionado = _labels.Find(x => x.ID_LABEL == ltbLabels.SelectedItem.ToString());
+            Label labelSelecionado = (Label)ltbLabels.SelectedItem;
 
             if (labelSelecionado != null)
             {
@@ -631,7 +663,7 @@ namespace TesteTransacaoServCORE
 
                 if (label.ShowDialog() == DialogResult.OK)
                 {
-                    _tipoOperacao = "DELETE INSERT";
+                    _tipoOperacao = "UPDATE";
                     txbQueryLabels.Text = GeraScriptLabel(labelSelecionado.Atualiza(), labelSelecionado.ID_LABEL);
 
                     txbQueryLabels.Focus();
@@ -643,7 +675,7 @@ namespace TesteTransacaoServCORE
 
         private void btnAdicionarLabel_Click(object sender, EventArgs e)
         {
-            Label labelNovo = new Label();
+            Label labelNovo = (Label)ltbLabels.SelectedItem;
 
             FormLabel label = new FormLabel(labelNovo);
 
@@ -899,7 +931,21 @@ namespace TesteTransacaoServCORE
             Comuns.orchBasica.EXCEPTION_EVAL = "";
             Comuns.orchBasica.BEFORE_EXECUTE_EVAL = "";
             Comuns.orchBasica.CACHE_EVAL = "N";
-        }
+
+            Comuns.configBasica = new ConfigIfChannel();
+            Comuns.configBasica.KEY_CONFIG = "NOVA_CONFIG";
+            Comuns.configBasica.PARAM_TYPE = "S";
+            Comuns.configBasica.VALIDATION = "N";
+            Comuns.configBasica.RESULT_EVAL = "NULL";
+            Comuns.configBasica.ID_IF = "0";
+            Comuns.configBasica.ID_CHANNEL = "1";
+            Comuns.configBasica.DESCRIPTION = "NULL";
+            Comuns.configBasica.ENABLED = "NULL";
+            Comuns.configBasica.PARAM_GROUP = "NULL";
+            Comuns.configBasica.VALUE = "true";
+
+
+    }
 
         #endregion
 
@@ -933,6 +979,10 @@ namespace TesteTransacaoServCORE
 
                     t.PERMITE_EDICAO = true;
 
+                    //string teste;
+                    //if (t.ID_TRANSACTION == "541")
+                    //    teste = "";
+
                     DataTable dt_TB_CHANNEL_TRANSACTION = ExecutaSQL("SELECT * FROM TB_CHANNEL_TRANSACTION WHERE ID_TRANSACTION = " + t.ID_TRANSACTION);
 
                     if (dt_TB_CHANNEL_TRANSACTION.Rows.Count > 0)
@@ -953,8 +1003,12 @@ namespace TesteTransacaoServCORE
                         t.ID_IF = obtemIfSelecionado();
                     }
 
+
+                    //DataTable dt_TB_TRANSACTION_PROCESS = ExecutaSQL("SELECT * FROM TB_TRANSACTION_PROCESS WHERE ID_TRANSACTION = " + t.ID_TRANSACTION
+                    //    + " AND ID_IF = " + t.ID_IF_2 + " AND ID_CHANNEL = " + t.ID_CHANNEL + " ORDER BY SEQ_FLOW");
+
                     DataTable dt_TB_TRANSACTION_PROCESS = ExecutaSQL("SELECT * FROM TB_TRANSACTION_PROCESS WHERE ID_TRANSACTION = " + t.ID_TRANSACTION
-                        + " AND ID_IF = " + t.ID_IF_2 + " AND ID_CHANNEL = " + t.ID_CHANNEL + " ORDER BY SEQ_FLOW");
+                         + " ORDER BY SEQ_FLOW");
 
                     t.Processos = new List<TransactionProcess>();
 
@@ -1218,9 +1272,11 @@ namespace TesteTransacaoServCORE
         {
             try
             {
-                _labels = new List<Label>();
+                //_labels = new List<Label>();
 
                 DataTable dt = ExecutaSQL("SELECT * FROM TB_LABEL ");
+
+                ltbLabels.Items.Clear();
 
                 foreach (DataRow r in dt.Rows)
                 {
@@ -1231,15 +1287,14 @@ namespace TesteTransacaoServCORE
                     lbl.LOCALE = r["LOCALE"].ToString();
                     lbl.LABEL = r["LABEL"].ToString();
 
-                    _labels.Add(lbl);
+                    //_labels.Add(lbl);
+                    ltbLabels.Items.Add(lbl);
                 }
 
-                ltbLabels.Items.Clear();
-
-                foreach(Label l in _labels)
-                {
-                    ltbLabels.Items.Add(l.ID_LABEL);
-                }
+                //foreach(Label l in _labels)
+                //{
+                //    ltbLabels.Items.Add(l.ID_LABEL);
+                //}
             }
             catch
             {
@@ -1295,6 +1350,97 @@ namespace TesteTransacaoServCORE
                 foreach (InstituicaoFinanceira i in _ifs)
                 {
                     cbbIf.Items.Add(i);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Erro ao obter dados da base", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CarregaConfigsIfChannel()
+        {
+            try
+            {
+                DataTable dt = ExecutaSQL("SELECT * FROM TB_CONFIG_IF_CHANNEL ");
+
+                ltbConfig.Items.Clear();
+
+                foreach (DataRow r in dt.Rows)
+                {
+                    ConfigIfChannel cic = new ConfigIfChannel();
+
+                    cic.KEY_CONFIG = r["KEY_CONFIG"].ToString();
+                    cic.PARAM_TYPE = r["PARAM_TYPE"].ToString();
+                    cic.VALIDATION = r["VALIDATION"].ToString();
+                    cic.RESULT_EVAL = r["RESULT_EVAL"].ToString();
+                    cic.ID_IF = r["ID_IF"].ToString();
+                    cic.ID_CHANNEL = r["ID_CHANNEL"].ToString();
+                    cic.DESCRIPTION = r["DESCRIPTION"].ToString();
+                    cic.ENABLED = r["ENABLED"].ToString();
+                    cic.PARAM_GROUP = r["PARAM_GROUP"].ToString();
+                    cic.VALUE = r["VALUE"].ToString();
+
+                    ltbConfig.Items.Add(cic);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Erro ao obter dados da base", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CarregaMenus()
+        {
+            try
+            {
+                DataTable dt = ExecutaSQL("SELECT * FROM TB_MENU ");
+
+                ltbMenu.Items.Clear();
+
+                foreach (DataRow r in dt.Rows)
+                {
+                    Menu menu = new Menu();
+
+                    menu.ID_MENU = r["ID_MENU"].ToString();
+                    menu.ID_MENU_PARENT = r["ID_MENU_PARENT"].ToString();
+                    menu.ID_TRANSACTION = r["ID_TRANSACTION"].ToString();
+                    menu.DESCRIPTION = r["DESCRIPTION"].ToString();
+                    menu.ACTION = r["ACTION"].ToString();
+                    menu.ID_IMG = r["ID_IMG"].ToString();
+                    menu.LEVEL_MENU = r["LEVEL_MENU"].ToString();
+                    menu.ORDER_NUMBER = r["ORDER_NUMBER"].ToString();
+                    menu.DATA = r["DATA"].ToString();
+                    menu.STATUS = r["STATUS"].ToString();
+
+                    ltbMenu.Items.Add(menu);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Erro ao obter dados da base", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CarregaChangeLog()
+        {
+            try
+            {
+                DataTable dt = ExecutaSQL("SELECT * FROM tb_database_changelog ");
+
+                ltbChangeLog.Items.Clear();
+
+                foreach (DataRow r in dt.Rows)
+                {
+                    ChangeLog changelog = new ChangeLog();
+
+                    changelog.SCRIPT_NAME = r["script_name"].ToString();
+                    changelog.PACKAGE_VERSION = r["package_version"].ToString();
+                    changelog.STATUS = r["status"].ToString();
+                    changelog.ORDER_NUMBER = r["order_number"].ToString();
+                    changelog.TS_CREATED = r["ts_created"].ToString();
+
+                    ltbChangeLog.Items.Add(changelog);
                 }
             }
             catch
@@ -1417,6 +1563,16 @@ namespace TesteTransacaoServCORE
             return GeraScript(script, txbCaminhoGerados.Text, "G", _tipoOperacao, "Label " + id_label);
         }
 
+        private string GeraScriptMenu(string script, string id_menu)
+        {
+            return GeraScript(script, txbCaminhoGerados.Text, "G", _tipoOperacao, "Menu " + id_menu);
+        }
+
+        private string GeraScriptConfigIfChannel(string script, string key_config)
+        {
+            return GeraScript(script, txbCaminhoGerados.Text, "G", _tipoOperacao, "Config " + key_config);
+        }
+
         private string GeraScript(string script, string caminho, string modo, string tipoOperacao, string transacao)
         {
             StringBuilder sb = new StringBuilder();
@@ -1532,6 +1688,10 @@ namespace TesteTransacaoServCORE
         {
             StringBuilder sb = new StringBuilder();
 
+            Process p = Comuns.processos.Find(x => x.ID_PROCESS == ltbProcessos.SelectedItem.ToString());
+
+            sb.Append("PROCESS NAME ").Append(p.NAME).Append("\r\n").Append("\r\n");
+
             foreach (Orch o in _orchs.FindAll(x => x.ID_PROCESS == ltbProcessos.SelectedItem.ToString()))
             {
                 sb.Append("STEP ").Append(o.STEP).Append("\r\n");
@@ -1587,6 +1747,11 @@ namespace TesteTransacaoServCORE
         {
             StringBuilder sb = new StringBuilder();
 
+            Process p = Comuns.processos.Find(x => x.ID_PROCESS == ltbProcessos.SelectedItem.ToString());
+
+            //sb.Append(p.Remove());
+            sb.Append(p.Novo()); 
+
             List<Orch> lista = _orchs.FindAll(x => x.ID_PROCESS == ltbProcessos.SelectedItem.ToString());
 
             if (lista != null)
@@ -1615,5 +1780,138 @@ namespace TesteTransacaoServCORE
 
             Util.GravaArquivoConfig(directory, JsonConvert.SerializeObject(config), out saida);
         }
+
+        private void ltbConfig_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAdicionarConfig_Click(object sender, EventArgs e)
+        {
+            ConfigIfChannel configNova = (ConfigIfChannel)ltbConfig.SelectedItem;
+
+            FormConfig configifchannel = new FormConfig(configNova);
+
+            if (configifchannel.ShowDialog() == DialogResult.OK)
+            {
+                _tipoOperacao = "DELETE INSERT";
+                txbQueryConfig.Text = GeraScriptConfigIfChannel(configNova.Nova(), configNova.KEY_CONFIG);
+                txbQueryConfig.Focus();
+
+                //btnExecutarOrch.Enabled = true;
+            }
+        }
+
+        private void btnRemoverConfig_Click(object sender, EventArgs e)
+        {
+            ConfigIfChannel configSelecionada = (ConfigIfChannel)ltbConfig.SelectedItem;
+
+            _tipoOperacao = "DELETE";
+            txbQueryConfig.Text = GeraScriptConfigIfChannel(configSelecionada.Remove(), configSelecionada.KEY_CONFIG);
+            txbQueryConfig.Focus();
+        }
+
+        private void btnEditarConfig_Click(object sender, EventArgs e)
+        {
+            ConfigIfChannel configSelecionada = (ConfigIfChannel)ltbConfig.SelectedItem;
+
+            FormConfig configifchannel = new FormConfig(configSelecionada);
+
+            if (configifchannel.ShowDialog() == DialogResult.OK)
+            {
+                _tipoOperacao = "UPDATE";
+                txbQueryConfig.Text = GeraScriptConfigIfChannel(configSelecionada.Atualiza(), configSelecionada.KEY_CONFIG);
+
+                txbQueryConfig.Focus();
+
+                //btnExecutarOrch.Enabled = true;
+            }
+
+        }
+
+        private void btnThemeQuebra_Click(object sender, EventArgs e)
+        {
+            string theme = Regex.Replace(txbTheme.Text.Trim(), @"\t|\n|\r", "");
+            int tamanho = Convert.ToInt32(txbQuebraStringTamanho.Text);
+            string tabela = txbQuebraStringTabela.Text;
+            string campo = txbQuebraStringCampo.Text;
+
+            string condicao = txbQuebraStringCondicao.Text;
+
+            List<string> partes = theme.Split(tamanho).ToList();
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("UPDATE ").Append(tabela).Append(" SET ").Append(campo).Append(" = '' WHERE ")
+                .Append(condicao).Append(";")
+                .Append("\r\n");
+
+            foreach(string s in partes)
+            {
+                sb.Append("UPDATE ").Append(tabela).Append(" SET ").Append(campo).Append(" = CONCAT(")
+                    .Append(campo).Append(",'")
+                    .Append(s)
+                    .Append("') WHERE ").Append(condicao).Append(";")
+                    .Append("\r\n");
+            }
+
+            txbThemeParts.Text = sb.ToString();
+        }
+
+        private void btnEditarMenu_Click(object sender, EventArgs e)
+        {
+            Menu menuSelecionado = (Menu)ltbMenu.SelectedItem;
+
+            if (menuSelecionado != null)
+            {
+                FormMenu menu = new FormMenu(menuSelecionado);
+
+                if (menu.ShowDialog() == DialogResult.OK)
+                {
+                    _tipoOperacao = "UPDATE";
+                    txbQueryMenu.Text = GeraScriptMenu(menuSelecionado.Atualiza(), menuSelecionado.ID_MENU);
+
+                    txbQueryMenu.Focus();
+                }
+            }
+        }
+
+        //static IEnumerable<string> ChunksUpto(string str, int maxChunkSize)
+        //{
+        //    for (int i = 0; i < str.Length; i += maxChunkSize)
+        //        yield return str.Substring(i, Math.Min(maxChunkSize, str.Length - i));
+        //}
     }
+
+    public static class Extensions
+    {
+        public static IEnumerable<string> Split(this string str, int n)
+        {
+            if (String.IsNullOrEmpty(str) || n < 1)
+            {
+                throw new ArgumentException();
+            }
+
+            for (int i = 0; i < str.Length; i += n)
+            {
+                yield return str.Substring(i, Math.Min(n, str.Length - i));
+            }
+        }
+    }
+
+    //public static class Extensions
+    //{
+    //    public static IEnumerable<string> Split(this string str, int n)
+    //    {
+    //        if (String.IsNullOrEmpty(str) || n < 1)
+    //        {
+    //            throw new ArgumentException();
+    //        }
+
+    //        IEnumerable<string> retorno = Enumerable.Range(0, str.Length / n)
+    //                        .Select(i => str.Substring(i * n, n));
+
+    //        return retorno;
+    //    }
+    //}
 }
